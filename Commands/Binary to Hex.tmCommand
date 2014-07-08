@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
-bc &lt;&lt;&lt; "obase=8;$(cat)"|tr -d \\n
+bc &lt;&lt;&lt; "obase=16;ibase=2;$(cat)"|tr -d \\n
 </string>
 	<key>fallbackInput</key>
 	<string>word</string>
@@ -17,15 +17,15 @@ bc &lt;&lt;&lt; "obase=8;$(cat)"|tr -d \\n
 	<key>keyEquivalent</key>
 	<string>^C</string>
 	<key>name</key>
-	<string>Decimal to Octal</string>
+	<string>Binary to Hex</string>
 	<key>outputCaret</key>
-	<string>heuristic</string>
+	<string>afterOutput</string>
 	<key>outputFormat</key>
 	<string>text</string>
 	<key>outputLocation</key>
 	<string>replaceInput</string>
 	<key>uuid</key>
-	<string>93992270-EA57-4AE0-BF91-16C9110A41E1</string>
+	<string>5C96CADF-849F-4270-9E58-0F3632CA528B</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>
