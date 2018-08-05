@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
 	<string>nop</string>
 	<key>command</key>
-	<string>printf "%s" `{ tr -d ,; echo; } | bc -l`| perl -pe 's/(\.[^0]+)0+$|\.0+$/$1/'</string>
+	<string>#!/usr/bin/env ruby20
+
+expression = STDIN.read.gsub(/(-?\d+)e(-?\d+)/i, '(\1*10^\2)')
+result = open('|/usr/bin/bc -l', 'w+') do |io|
+  io.write(expression.tr(',', '') + "\n")
+  io.close_write
+  io.read
+end
+STDOUT &lt;&lt; result.chomp.sub(/(\.[0-9]*[^0]+)0+$|\.0+$/, '\1')
+</string>
 	<key>fallbackInput</key>
 	<string>line</string>
 	<key>input</key>
 	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^C</string>
 	<key>name</key>
 	<string>Evaluate and Replace Expression</string>
-	<key>output</key>
-	<string>replaceSelectedText</string>
+	<key>outputCaret</key>
+	<string>heuristic</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>uuid</key>
 	<string>D1DFE75D-EAAD-4662-8F1F-F5556402054B</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
