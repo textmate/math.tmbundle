@@ -16,7 +16,7 @@ abort if query.empty?
 
 TextMate.call_with_progress(:message =&gt; 'Querying Google…') do
   response = Net::HTTP.get('www.google.com', '/search?q=' + query)
-  if response =~ /&lt;b&gt;.*? = (.*?)&lt;\/b&gt;/
+  if response =~ /&lt;h2.*?&gt;.*? = (.*?)&lt;\/h2&gt;/
     answer = $1
     answer.gsub!(/&lt;sup&gt;(.+?)&lt;\/sup&gt;/, '^\1') # Prefix exponents
     answer.gsub!(/&lt;.+?&gt;/, '')
